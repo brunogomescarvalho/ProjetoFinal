@@ -1,0 +1,78 @@
+<div class="container-fluid  ">
+  <div class="row">
+    <div class="col-12 + logo">
+      <img  [src]='imagemLogo' width="58%">
+    </div>
+  </div>
+ 
+  <div class="row d-flex  justify-content-center">
+
+      <div class="col-10 + nome">
+        <span [ngStyle]="{fontSize:'20px'}">Confeitaria </span>
+        <span>Dino's Donuts </span> 
+        <span [ngStyle]="{fontSize:'20px'}">Pães, Donuts e Sobremesas</span>
+      </div>
+   
+    <div class="col-8">
+      <hr>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" routerLink="home">Início</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+              <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Clientes
+                </a>
+                <ul ngbDropdownMenu class="dropdown-menu">
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="cliente/formulario">Cadastrar Cliente</a>
+                  </li>
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="cliente/gerenciar">Gerenciar Clientes</a>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Produtos
+                </a>
+                <ul ngbDropdownMenu class="dropdown-menu">
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="produto/formulario">Cadastrar Produto</a>
+                  </li>
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="produto/gerenciar">Gerenciar Produtos</a>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Pedidos
+                </a>
+                <ul ngbDropdownMenu class="dropdown-menu">
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="pedido/formulario">Efetuar Pedido</a></li>
+                  <li><a ngbDropdownItem class="dropdown-item" routerLink="pedido/gerenciar">Gerenciar Pedidos</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row m-4 justify-content-center">
+      <div class="col-10">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+

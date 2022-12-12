@@ -1,0 +1,53 @@
+<div class="container justify-content-center m-4">
+    <div class="row">
+        <div class="col-11 text-center">
+            <h2>Acompanhamento</h2>
+        </div>
+    </div>
+
+    <div class="row m-3">
+        <div class="col-6 text-center">
+            <span [ngStyle]="{fontSize:'20px'}">Status: {{pedido?.statusPedido == 0? "Em andamento" : pedido?.statusPedido ==1?
+                'Em Trânsito':
+                pedido?.statusPedido == 2? 'Finalizado':''}}</span>
+        </div>
+    </div>
+    <div class="row justify-content-center m-1">
+        <div class="col-8">
+            <mat-progress-bar mode="determinate"
+                [value]=" pedido?.statusPedido == 0? '25':pedido?.statusPedido == 1?'55':pedido?.statusPedido == 2?'100':'0'">
+            </mat-progress-bar>
+        </div>
+    </div>
+
+    <div class="row justify-content-center m-4">
+        <div class="col-4">
+            <div class="card text-center p-2 m-2" [ngStyle]="{backgroundColor:  'rgba(114, 144, 255, 0.39)' }">
+                <div>
+                    <span class="fw-bold mb-1 ms-3">Pedido Nrº: {{pedido?.id}}</span>
+                    <hr>
+                </div>
+                <div>
+                    <p class="fw-bold" [ngStyle]="{fontSize:'20px', color: '#6d76bb' }">Detalhes</p>
+                </div>
+                <div>
+                    <span class="fw-normal mb-1">Cliente: {{pedido?.cliente?.nome == null? 'Não Cadastrado':
+                        pedido?.cliente?.nome }}</span>
+                </div>
+                <div>
+                    <span class="fw-bold mb-1">Produto: {{pedido?.produto?.id}} - {{pedido?.produto?.descricao }}</span>
+                </div>
+                <div>
+                    <span class="fw-normal mb-1">Quantidade: {{pedido?.quantidade}} Un</span>
+                </div>
+                <div>
+                    <span class="fw-bold mb-1">Valor Total: R$ {{pedido?.valorTotal}}</span>
+                </div>
+            </div>
+
+            <div class="col"> 
+                <button class="btn btn-primary m-3 " (click)="voltar()">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>

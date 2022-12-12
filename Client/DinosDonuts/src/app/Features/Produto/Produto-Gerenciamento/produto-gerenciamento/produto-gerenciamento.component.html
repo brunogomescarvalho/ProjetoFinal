@@ -1,0 +1,53 @@
+<div class="container justify-content-center">
+    <div class="row m-3">
+        <div class="col-11 text-center">
+            <h2>Gerenciar Produtos</h2>
+        </div>
+        <div class="row d-flex justify-content-center p-2 w-100">
+            <div class="col-10">
+                <table class="table align-middle mt-3 mb-0 bg-white">
+                    <thead class="bg-light text-center">
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Validade</th>
+                            <th>Ativo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let produto of listaProdutos" class="text-center">
+                        <tr>
+                            <td>
+                                <p class="fw-bold mb-1 ms-3 text-start" >{{produto.descricao}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1">R$ {{produto.preco}}</p>
+                            </td>
+                            <td>
+                                <p class=" text-center fw-bold mb-1">{{produto.quantidade}}</p>
+                            </td>
+                            <td>{{produto.dataValidade | date: 'dd-MM-yyyy'}}</td>
+                            <td>
+                                <p class="fw-normal mb-1">{{produto.ativo? 'Sim':'Não'}}</p>
+                            </td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-outline-warning m-1 btn-sm"
+                                        (click)="editarProduto(produto)">Editar</button>
+                                    <button class="btn btn-outline-primary m-1 btn-sm"
+                                        (click)="editarEstoque(produto)">Estoque</button>
+                                    <button [ngClass]="produto.ativo == true? 'btn btn-outline-success m-1 btn-sm':
+                                     'btn btn-outline-secondary m-1 btn-sm'"
+                                     mat-raised-button   (click)="openDialog(produto)">{{produto.ativo==true? ' On ': ' Off '}}</button>
+                                </div>
+                            </td>
+                        </tr>  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--alert-->
+<app-alert-component [resposta]="resposta" [solicitacaoRespondida]="solicitacaoRespondida"></app-alert-component>

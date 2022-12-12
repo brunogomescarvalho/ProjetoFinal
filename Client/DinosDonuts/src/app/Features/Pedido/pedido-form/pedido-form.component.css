@@ -1,0 +1,7 @@
+.valido {
+    border-left: 5px solid rgba(19, 163, 19, 0.615);
+}
+
+.invalido {
+    border-left: 5px solid rgba(255, 0, 0, 0.571);
+}

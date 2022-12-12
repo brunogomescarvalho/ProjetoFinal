@@ -1,0 +1,31 @@
+
+    <div class="row d-flex justify-content-center m-4">
+        <div class="col-6">
+            <div *ngIf="resposta else aguarde">
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                    *ngIf="resposta.statusCode == 200">
+                    <strong>{{resposta.message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    *ngIf="resposta.statusCode == 400">
+                    <strong>{{resposta.message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                    *ngIf=" solicitacaoRespondida == false && resposta.statusCode==null ">
+                    <strong>Não foi possível estabelecer conexão com o servidor, tente novamente mais tarde.</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+            </div>
+
+            <ng-template #aguarde>
+                <p *ngIf="solicitacaoRespondida == false">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </p>
+            </ng-template>
+        </div>
+    </div>

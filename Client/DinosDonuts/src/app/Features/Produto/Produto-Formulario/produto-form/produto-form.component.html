@@ -1,0 +1,65 @@
+<div class="container m-3 justify-content-center">
+
+    <div class="row">
+        <div class="col-11 text-center">
+            <h2>{{cadastrarNovoProduto? 'Cadastrar Produto' : 'Editar Produto'}}</h2>
+        </div>
+    </div>
+    <div class="row  d-flex justify-content-center p-2 w-100">
+        <div class="col-6 ">
+            <form [formGroup]="form" (ngSubmit)="enviar()">
+
+                <div class="form-group m-2">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="descricao" autocomplete="off"
+                        formControlName="descricao"
+                        [ngClass]="{'valido': form.get('descricao')?.valid ,'invalido': !form.get('descricao')?.valid && !form.get('descricao')?.pristine}">
+                    <div class="alert alert-danger"
+                        [hidden]="form.get('descricao')?.valid || form.get('descricao')?.pristine">
+                        <span *ngIf="form.get('descricao')?.errors?.['required']">* A descrição do produto é
+                            obrigatória</span>
+                        <span *ngIf="form.get('descricao')?.errors?.['minlength']">* A descrição do produto precisa ter
+                            no mínimo
+                            3 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label for="preco" class="form-label">Preço</label>
+                    <input type="number" class="form-control" id="preco" autocomplete="off" formControlName="preco"
+                        [ngClass]="{'valido': form.get('preco')?.valid ,'invalido': !form.get('preco')?.valid && !form.get('preco')?.pristine}">
+                    <div class="alert alert-danger" [hidden]="form.get('preco')?.valid || form.get('preco')?.pristine">
+                        <span *ngIf="form.get('preco')?.errors?.['required']">* O preço do produto é obrigatório</span>
+                        <span *ngIf="form.get('preco')?.errors?.['min']">* O preço precisa ser maior que zero</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group m-2">
+                    <label for="dataValidade" class="form-label">Data Validade</label>
+                    <input type="date" class="form-control" id="dataValidade" autocomplete="off"
+                        formControlName="dataValidade" [ngClass]="{'valido': form.get('dataValidade')?.valid ,
+                        'invalido': !form.get('dataValidade')?.valid && !form.get('dataValidade')?.pristine}">
+                    <div class="alert alert-danger"
+                        [hidden]="form.get('dataValidade')?.valid || form.get('dataValidade')?.pristine">
+                        <span *ngIf="form.get('dataValidade')?.errors?.['required']">* A data de validade é
+                            obrigatória</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <input type="submit" [disabled]="!form.valid" class=" mt-3 btn btn-primary" value="Enviar">
+                        </div>
+
+                        <div *ngIf="!cadastrarNovoProduto" class="col-2">
+                            <button class="btn btn-outline-warning m-3" (click)="voltar()">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--alert-->
+    <app-alert-component [resposta]="resposta" [solicitacaoRespondida]="solicitacaoRespondida"></app-alert-component>

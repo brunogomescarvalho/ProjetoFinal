@@ -1,0 +1,64 @@
+<div class="container m-3 justify-content-center">
+
+    <div class="row">
+        <div class="col-11 text-center">
+            <h2>{{cadastrarNovoCliente? 'Cadastrar Cliente' : 'Editar Cliente'}}</h2>
+        </div>
+    </div>
+    <div class="row  d-flex justify-content-center p-2 w-100">
+        <div class="col-6 ">
+            <form [formGroup]="form" (ngSubmit)="enviar()">
+
+                <!-- {{form.value | json}} -->
+
+                <div class="form-group m-2">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nome" autocomplete="off" formControlName="nome"
+                        [ngClass]="{'valido': form.get('nome')?.valid ,'invalido': !form.get('nome')?.valid && !form.get('nome')?.pristine}">
+                    <div class="alert alert-danger" [hidden]="form.get('nome')?.valid || form.get('nome')?.pristine">
+                        <span *ngIf="form.get('nome')?.errors?.['required']">* O nome do cliente é obrigatório</span>
+                        <span *ngIf="form.get('nome')?.errors?.['minlength']">* O nome do cliente precisa ter no mínimo
+                            3 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" class="form-control" id="cpf" autocomplete="off" formControlName="cpf"
+                        [ngClass]="{'valido': form.get('cpf')?.valid ,'invalido': !form.get('cpf')?.valid && !form.get('cpf')?.pristine}">
+                    <div class="alert alert-danger" [hidden]="form.get('cpf')?.valid || form.get('cpf')?.pristine">
+                        <span *ngIf="form.get('cpf')?.errors?.['required']">* O CPF do cliente é obrigatório</span>
+                        <span *ngIf="form.get('cpf')?.errors?.['pattern']">* Utilize o padrão 000.000.000-00
+                          </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group m-2">
+                    <label for="dataNascimento" class="form-label">Data Nascimento</label>
+                    <input type="date" class="form-control" id="dataNascimento" autocomplete="off"
+                        formControlName="dataNascimento" [ngClass]="{'valido': form.get('dataNascimento')?.valid ,
+                        'invalido': !form.get('dataNascimento')?.valid && !form.get('dataNascimento')?.pristine}">
+                    <div class="alert alert-danger"
+                        [hidden]="form.get('dataNascimento')?.valid || form.get('dataNascimento')?.pristine">
+                        <span *ngIf="form.get('dataNascimento')?.errors?.['required']">* A data de nascimento é
+                            obrigatória</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <input type="submit" [disabled]="!form.valid" class=" mt-3 btn btn-primary" value="Enviar">
+                        </div>
+
+                        <div *ngIf="!cadastrarNovoCliente" class="col-2">
+                            <button class="btn btn-outline-warning m-3" (click)="voltar()">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+      <!--alert-->
+<app-alert-component [resposta]="resposta" [solicitacaoRespondida]="solicitacaoRespondida"></app-alert-component>

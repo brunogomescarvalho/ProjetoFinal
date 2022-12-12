@@ -1,0 +1,49 @@
+<div class="container m-3 justify-content-center">
+
+    <div class="row">
+        <div class="col-11 text-center">
+            <h2>Alterar Status</h2>
+        </div>
+    </div>
+    <div class="row  d-flex justify-content-center m-2 w-100">
+        <div class="col-5 ">
+
+            <form [formGroup]="form" (ngSubmit)="enviar()">
+
+                <!-- {{form.value | json}} -->
+
+                <div class="form-group m-2">
+                    <div class="col fw-bold mb-1 ms-3">
+                        <p>Pedido: {{this.form.value.id}}</p>
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <div class="col fw-bold mb-1 ms-3">
+                        <p>Status Atual: {{enumString(this.form.value.statusAtual)}}</p>
+                    </div>
+                </div>
+
+                <div class="form-group m-2">
+                    <label for="statusAlterar">Selecione o Status</label>
+                    <select class="form-select m-2" formControlName="statusAlterar">
+                        <option *ngFor="let status of statusPedido |keyvalue" [ngValue]=status.key>
+                            {{status?.key}} - {{status?.value}}
+                        </option>
+                    </select>
+                    <div class="alert alert-danger"
+                        [hidden]="form.get('statusAlterar')?.valid || form.get('statusAlterar')?.pristine  ">
+                        <span *ngIf="form.get('statusAlterar')?.errors?.['required']">*É necessário informar um
+                            Status!<br></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary m-3">Enviar</button>
+                    <button class="btn btn-outline-primary m-3 " (click)="voltar()">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--alert-->
+<app-alert-component [resposta]="resposta" [solicitacaoRespondida]="solicitacaoRespondida"></app-alert-component>

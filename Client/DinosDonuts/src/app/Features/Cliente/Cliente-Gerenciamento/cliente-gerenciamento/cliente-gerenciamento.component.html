@@ -1,0 +1,46 @@
+<div class="container justify-content-center">
+    <div class="row m-3">
+        <div class="col-11 text-center">
+            <h2>Gerenciar Clientes</h2>
+        </div>
+        <div class="row d-flex justify-content-center p-2 w-100">
+            <div class="col-10">
+                <table class="table  mt-3 mb-0 bg-white">
+                    <thead class="bg-light text-center">
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Pontos de Fidelidade</th>
+                            <th>Data Nascimento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let cliente of listaClientes">
+                        <tr>
+                            <td>
+                                <p class=" text-start fw-bold mb-1 ms-3">{{cliente.nome}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1">{{cliente.cpf}}</p>
+                            </td>
+                            <td>
+                                <p class=" text-center fw-bold mb-1">{{cliente.pontos}}</p>
+                            </td>
+                            <td>{{cliente.dataNascimento | date: 'dd-MM-yyyy'}}</td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-outline-warning m-1 btn-sm"
+                                        (click)="editarCliente(cliente)">Editar</button>
+                                    <button class="btn btn-outline-danger m-1 btn-sm"
+                                        (click)="openDialog(cliente)">Remover</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+     <!--alert-->
+<app-alert-component [resposta]="resposta" [solicitacaoRespondida]="solicitacaoRespondida"></app-alert-component>

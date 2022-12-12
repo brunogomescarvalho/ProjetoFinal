@@ -1,0 +1,10 @@
+.nome {
+    font-size: 25px;
+ padding: 50px;
+    height: 90px;
+   width: 100%;
+  text-align-last: center;
+    color: #6f4a86dc;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   text-decoration: wavy;
+}
